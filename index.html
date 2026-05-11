@@ -754,23 +754,28 @@
             z-index: 2;
         }
         .enrico-photo {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: transparent;
+            border: none;
             border-radius: 12px;
             aspect-ratio: 3 / 4;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255,255,255,0.4);
-            font-size: 0.85rem;
-            font-style: italic;
-            text-align: center;
-            padding: 24px;
             position: relative;
             overflow: hidden;
+            box-shadow:
+                12px 12px 30px rgba(0,0,0,0.5),
+                -4px -4px 15px rgba(255,255,255,0.03),
+                0 0 0 1px rgba(255,255,255,0.05);
+            transform: perspective(800px) rotateY(-2deg) rotateX(1deg);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
-        .enrico-photo::before {
-            display: none;
+        .enrico-photo:hover {
+            transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+            box-shadow:
+                16px 16px 40px rgba(0,0,0,0.6),
+                -6px -6px 20px rgba(255,255,255,0.04),
+                0 0 0 1px rgba(255,255,255,0.08);
         }
         .enrico-photo strong {
             display: block;
