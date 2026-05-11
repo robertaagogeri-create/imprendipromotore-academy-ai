@@ -770,11 +770,7 @@
             overflow: hidden;
         }
         .enrico-photo::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 60%, rgba(204,0,51,0.1) 100%);
-            pointer-events: none;
+            display: none;
         }
         .enrico-photo strong {
             display: block;
@@ -854,7 +850,18 @@
                 radial-gradient(ellipse 250px 400px at 65% 15%, rgba(204,0,51,0.04) 0%, transparent 65%),
                 var(--light-gray);
         }
-        .testi-grid {
+        .testi-top {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 24px;
+            align-items: end;
+            margin-bottom: 24px;
+        }
+        .testi-top .section-header {
+            margin-bottom: 0;
+            align-self: center;
+        }
+        .testi-bottom {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
@@ -862,7 +869,7 @@
         .testi-card {
             background: var(--white);
             border-radius: 12px;
-            padding: 32px;
+            padding: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             transition: all 0.4s;
             position: relative;
@@ -871,15 +878,26 @@
             transform: translateY(-4px);
             box-shadow: 0 12px 35px rgba(0,0,0,0.1);
         }
-        .testi-card::before {
-            content: "\201C";
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            font-size: 4rem;
-            color: rgba(204,0,51,0.1);
-            line-height: 1;
-            font-family: Georgia, serif;
+        .testi-card.vertical .video-wrap {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            max-height: 380px;
+        }
+        .testi-card.horizontal .video-wrap {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .testi-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
         }
         .testi-card p {
             font-style: italic;
@@ -1277,32 +1295,48 @@
         /* ===================== RESPONSIVE ===================== */
         @media (max-width: 992px) {
             .hero-banner { padding: 24px 28px 28px; border-radius: 14px; }
+            .hero h1 { white-space: normal; font-size: clamp(1.6rem, 4vw, 2.8rem); }
             .enrico-grid { grid-template-columns: 1fr; gap: 28px; }
             .promesse-grid,
             .ricevi-grid,
             .timeline-grid,
-            .testi-grid,
             .diff-grid,
-            .promo-grid,
             .enrico-stats { grid-template-columns: 1fr 1fr; }
+            .testi-top { grid-template-columns: 1fr 1fr; gap: 20px; }
+            .testi-top .section-header { grid-column: 1 / -1; order: -1; }
+            .testi-bottom { grid-template-columns: 1fr 1fr; }
             .timeline-step { border-right: none; border-bottom: 1px solid #eee; }
+            .nav-links a { font-size: 0.72rem; }
+            .nav-links { gap: 16px; }
         }
         @media (max-width: 768px) {
+            .hero h1 { white-space: normal; font-size: 1.5rem; }
+            .hero-banner { padding: 20px 18px 22px; border-radius: 10px; }
+            .banner-sub { font-size: 0.88rem; }
+            .hero-columns { grid-template-columns: 1fr; }
+            .hero-left { margin-bottom: 10px; }
+            .hero-badge { font-size: 0.65rem; padding: 6px 14px; }
+            .hero-cta { flex-direction: column; align-items: stretch; }
+            .hero-meta { flex-direction: column; gap: 12px; }
+            .nav-links { display: none; }
             .promesse-grid,
             .ricevi-grid,
             .timeline-grid,
             .fit-grid,
-            .testi-grid,
             .diff-grid,
-            .promo-grid,
             .enrico-stats { grid-template-columns: 1fr; }
-            .hero-columns { grid-template-columns: 1fr; }
-            .hero-cta { flex-direction: column; align-items: stretch; }
-            .hero-banner { padding: 20px 22px 24px; }
-            .strip-mandanti .container { gap: 16px; }
-            .strip-mandanti .mandante { font-size: 0.9rem; }
+            .testi-top { grid-template-columns: 1fr; }
+            .testi-top .section-header { order: -1; }
+            .testi-card.vertical .video-wrap { max-height: 300px; }
+            .testi-bottom { grid-template-columns: 1fr; }
+            .chiusura h2 { font-size: 1.4rem; }
             .chiusura .cta-final { flex-direction: column; align-items: center; }
             .footer .container { padding: 0 20px; }
+            .enrico-grid { grid-template-columns: 1fr; }
+            .enrico-photo { max-height: 400px; }
+            .section-header h2 { font-size: 1.3rem; }
+            .promessa-card h4 { font-size: 1rem; }
+            .btn-primary { font-size: 0.85rem; padding: 14px 28px; }
         }
     </style>
 </head>
@@ -1328,7 +1362,7 @@
 <section class="hero" id="top">
     <div class="container">
         <div style="text-align:center;margin-bottom:16px;">
-            <span class="hero-badge">Club dei Fondatori <span style="color:#cccc00;">&middot;</span> Solo 50 posti</span>
+            <span class="hero-badge">Club dei Fondatori <span style="color:#cccc00;font-size:1.4em;line-height:0;vertical-align:-0.05em;">&bull;</span> Solo 50 posti</span>
         </div>
         <div class="hero-banner">
             <h1>AI per <span class="accent">consulenti finanziari</span></h1>
@@ -1374,13 +1408,10 @@
                 </div>
             </div>
             <div class="hero-right">
-                <div class="hero-visual">
-                    <div class="placeholder-img">
-                        <div style="width:60px;height:60px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;cursor:pointer;box-shadow:0 0 0 0 rgba(204,0,51,0.4);animation:pulse 2s infinite;">
-                            <div style="width:0;height:0;border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent var(--white);margin-left:3px;"></div>
-                        </div>
-                        <strong>[Video di presentazione]</strong>
-                    </div>
+                <div class="hero-visual" style="padding:0;background:black;">
+                    <video style="width:100%;height:100%;object-fit:cover;border-radius:12px;" controls playsinline>
+                        <source src="video-presentazione.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="hero-cta" style="margin-top:14px;">
                     <a href="#iscriviti" class="btn-primary" style="width:100%;">Voglio entrare nel Club dei Fondatori</a>
@@ -1523,10 +1554,7 @@
     <div class="container">
         <div class="enrico-grid animate-on-scroll">
             <div class="enrico-photo">
-                <div>
-                    <strong>[Foto Enrico Florentino]</strong>
-                    Foto editoriale, in giacca, sfondo neutro o scuro. Tagliata 3:4 verticale.
-                </div>
+                <img src="enrico-florentino.jpg" alt="Enrico Florentino" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div class="enrico-text">
                 <span class="eyebrow">Chi insegna</span>
@@ -1561,18 +1589,39 @@
 <!-- ======================== TESTIMONIANZE ======================== -->
 <section class="testimonianze">
     <div class="container">
-        <div class="section-header animate-on-scroll">
-            <span class="eyebrow" style="color:var(--red);">Testimonianze</span>
-            <h2 style="color:var(--dark);">Cosa dicono i consulenti che lavorano con Enrico.</h2>
-        </div>
-        <div class="testi-grid">
-            <div class="testi-card animate-on-scroll">
-                <p><span class="placeholder">[Testimonianza 1: testo anonimizzato di un Mentor o di uno studente Scuola di Consulenza, 4-5 righe, da raccogliere e inserire prima del freeze.]</span></p>
-                <cite>&mdash; M.B., consulente finanziario, <span class="placeholder">[mandante]</span>, <span class="placeholder">[citta]</span></cite>
+        <!-- Riga superiore: verticale + titolo + verticale -->
+        <div class="testi-top">
+            <div class="testi-card vertical animate-on-scroll">
+                <div class="video-wrap"><video controls playsinline><source src="testi-bassi.mp4" type="video/mp4"></video></div>
+                <cite>Gianluca Bassi</cite>
             </div>
-            <div class="testi-card animate-on-scroll delay-1">
-                <p><span class="placeholder">[Testimonianza 2: testo anonimizzato di un consulente che ha fatto Mentor, 4-5 righe, da raccogliere e inserire prima del freeze.]</span></p>
-                <cite>&mdash; A.R., consulente finanziario, <span class="placeholder">[mandante]</span>, <span class="placeholder">[citta]</span></cite>
+            <div class="section-header animate-on-scroll">
+                <span class="eyebrow" style="color:var(--red);">Testimonianze</span>
+                <h2 style="color:var(--dark);">Cosa dicono i consulenti che lavorano con Enrico.</h2>
+            </div>
+            <div class="testi-card vertical animate-on-scroll delay-1">
+                <div class="video-wrap"><video controls playsinline><source src="testi-berti.mp4" type="video/mp4"></video></div>
+                <cite>Stefano Berti</cite>
+            </div>
+        </div>
+
+        <!-- Riga inferiore: 4 orizzontali in griglia 2x2 -->
+        <div class="testi-bottom">
+            <div class="testi-card horizontal animate-on-scroll">
+                <div class="video-wrap"><video controls playsinline><source src="testi-scali.mp4" type="video/mp4"></video></div>
+                <cite>Enrico Scali</cite>
+            </div>
+            <div class="testi-card horizontal animate-on-scroll delay-1">
+                <div class="video-wrap"><video controls playsinline><source src="testi-genovese.mp4" type="video/mp4"></video></div>
+                <cite>Salvatore Genovese</cite>
+            </div>
+            <div class="testi-card horizontal animate-on-scroll">
+                <div class="video-wrap"><video controls playsinline><source src="testi-contristano.mp4" type="video/mp4"></video></div>
+                <cite>Gerardo Contristano</cite>
+            </div>
+            <div class="testi-card horizontal animate-on-scroll delay-1">
+                <div class="video-wrap"><video controls playsinline><source src="testi-carpi.mp4" type="video/mp4"></video></div>
+                <cite>Fabrizio Carpi</cite>
             </div>
         </div>
     </div>
@@ -1585,7 +1634,7 @@
     <div class="beam"></div>
     <div class="container">
         <div class="section-header animate-on-scroll">
-            <span class="eyebrow">Cosa rende diversa IAIA</span>
+            <span class="eyebrow">Cosa rende diversa Imprendipromotore AI Academy</span>
             <h2 style="color:var(--white);">Cosa rende diversa IMPRENDIPROMOTORE AI Academy.</h2>
         </div>
         <div class="diff-grid">
@@ -1635,27 +1684,12 @@
             </details>
             <details class="faq-item">
                 <summary>È riconosciuto da EFPA? Posso fare entrambi?<span class="faq-toggle">+</span></summary>
-                <div class="answer">No, è una scuola di metodo, non un attestato di categoria. Sì, si possono fare entrambi: sono complementari. Il corso istituzionale ti dà il bollino in alcune settimane. IAIA ti dà il metodo in dodici mesi.</div>
+                <div class="answer">No, è una scuola di metodo, non un attestato di categoria. Sì, si possono fare entrambi: sono complementari. Il corso istituzionale ti dà il bollino in alcune settimane. Imprendipromotore AI Academy ti dà il metodo in dodici mesi.</div>
             </details>
         </div>
     </div>
 </section>
 
-<!-- ======================== PROMO STRIP ======================== -->
-<section class="promo-strip">
-    <div class="container">
-        <div class="promo-grid">
-            <div class="promo-card animate-on-scroll">
-                <strong>Promo Cashback Tour</strong>
-                <p>Hai partecipato al Tour 1 a marzo o al Tour 2 a maggio? Ti rimborsiamo il prezzo del Tour pagato all&#x2019;iscrizione IAIA.</p>
-            </div>
-            <div class="promo-card animate-on-scroll delay-1">
-                <strong>Bundle La Lettera + IAIA</strong>
-                <p>Disponibile al checkout per gli abbonati La Lettera attivi.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- ======================== CHIUSURA ======================== -->
 <section class="chiusura" id="iscriviti">
