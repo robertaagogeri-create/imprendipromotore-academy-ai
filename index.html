@@ -862,18 +862,7 @@
                 radial-gradient(ellipse 250px 400px at 65% 15%, rgba(204,0,51,0.04) 0%, transparent 65%),
                 var(--light-gray);
         }
-        .testi-top {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 24px;
-            align-items: end;
-            margin-bottom: 24px;
-        }
-        .testi-top .section-header {
-            margin-bottom: 0;
-            align-self: center;
-        }
-        .testi-bottom {
+        .testi-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
@@ -890,26 +879,20 @@
             transform: translateY(-4px);
             box-shadow: 0 12px 35px rgba(0,0,0,0.25);
         }
-        .testi-card.vertical .video-wrap {
-            width: 100%;
-            aspect-ratio: 9 / 16;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 12px;
-            max-height: 380px;
-        }
-        .testi-card.horizontal .video-wrap {
+        .testi-card .video-wrap {
             width: 100%;
             aspect-ratio: 16 / 9;
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 12px;
         }
-        .testi-card video {
+        .testi-card video,
+        .testi-card iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center top;
+            border-radius: 8px;
         }
         .testi-card p {
             font-style: italic;
@@ -1314,9 +1297,7 @@
             .timeline-grid,
             .diff-grid,
             .enrico-stats { grid-template-columns: 1fr 1fr; }
-            .testi-top { grid-template-columns: 1fr 1fr; gap: 20px; }
-            .testi-top .section-header { grid-column: 1 / -1; order: -1; }
-            .testi-bottom { grid-template-columns: 1fr 1fr; }
+            .testi-grid { grid-template-columns: 1fr 1fr; }
             .timeline-step { border-right: none; border-bottom: 1px solid #eee; }
             .nav-links a { font-size: 0.72rem; }
             .nav-links { gap: 16px; }
@@ -1337,10 +1318,7 @@
             .fit-grid,
             .diff-grid,
             .enrico-stats { grid-template-columns: 1fr; }
-            .testi-top { grid-template-columns: 1fr; }
-            .testi-top .section-header { order: -1; }
-            .testi-card.vertical .video-wrap { max-height: 300px; }
-            .testi-bottom { grid-template-columns: 1fr; }
+            .testi-grid { grid-template-columns: 1fr; }
             .chiusura h2 { font-size: 1.4rem; }
             .chiusura .cta-final { flex-direction: column; align-items: center; }
             .footer .container { padding: 0 20px; }
@@ -1601,39 +1579,43 @@
 <!-- ======================== TESTIMONIANZE ======================== -->
 <section class="testimonianze">
     <div class="container">
-        <!-- Riga superiore: verticale + titolo + verticale -->
-        <div class="testi-top">
-            <div class="testi-card vertical animate-on-scroll">
-                <div class="video-wrap"><video controls playsinline><source src="testi-bassi.mp4" type="video/mp4"></video></div>
-                <cite>Gianluca Bassi</cite>
-            </div>
-            <div class="section-header animate-on-scroll">
-                <span class="eyebrow" style="color:var(--red);">Testimonianze</span>
-                <h2 style="color:var(--dark);">Cosa dicono i consulenti che lavorano con Enrico.</h2>
-            </div>
-            <div class="testi-card vertical animate-on-scroll delay-1">
-                <div class="video-wrap"><video controls playsinline><source src="testi-berti.mp4" type="video/mp4"></video></div>
-                <cite>Stefano Berti</cite>
-            </div>
+        <div class="section-header animate-on-scroll">
+            <span class="eyebrow" style="color:var(--red);">Testimonianze</span>
+            <h2 style="color:var(--dark);">Cosa dicono i consulenti che lavorano con Enrico.</h2>
         </div>
 
-        <!-- Riga inferiore: 4 orizzontali in griglia 2x2 -->
-        <div class="testi-bottom">
-            <div class="testi-card horizontal animate-on-scroll">
-                <div class="video-wrap"><video controls playsinline><source src="testi-scali.mp4" type="video/mp4"></video></div>
-                <cite>Enrico Scali</cite>
-            </div>
-            <div class="testi-card horizontal animate-on-scroll delay-1">
-                <div class="video-wrap"><video controls playsinline><source src="testi-genovese.mp4" type="video/mp4"></video></div>
-                <cite>Salvatore Genovese</cite>
-            </div>
-            <div class="testi-card horizontal animate-on-scroll">
-                <div class="video-wrap"><video controls playsinline><source src="testi-contristano.mp4" type="video/mp4"></video></div>
+        <div class="testi-grid">
+            <div class="testi-card animate-on-scroll">
+                <div class="video-wrap"><iframe src="https://www.youtube.com/embed/8o5ENpWIADo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 <cite>Gerardo Contristano</cite>
             </div>
-            <div class="testi-card horizontal animate-on-scroll delay-1">
-                <div class="video-wrap"><video controls playsinline><source src="testi-carpi.mp4" type="video/mp4"></video></div>
+            <div class="testi-card animate-on-scroll delay-1">
+                <div class="video-wrap"><iframe src="https://www.youtube.com/embed/NPWy_DWWZg0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <cite>Massimiliano Trapletti</cite>
+            </div>
+            <div class="testi-card animate-on-scroll">
+                <div class="video-wrap"><iframe src="https://www.youtube.com/embed/V083C8BuPgQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <cite>Stefano Berti</cite>
+            </div>
+            <div class="testi-card animate-on-scroll delay-1">
+                <div class="video-wrap"><iframe src="https://www.youtube.com/embed/uZJsZVV7Xvc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 <cite>Fabrizio Carpi</cite>
+            </div>
+            <div class="testi-card animate-on-scroll">
+                <div class="video-wrap"><iframe src="https://www.youtube.com/embed/sv9YP_7LZII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <cite>Enrico Scali</cite>
+            </div>
+            <div class="testi-card animate-on-scroll delay-1">
+                <div class="video-wrap"><iframe src="https://www.youtube.com/embed/1GMGHrgnWDM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <cite>Massimiliano Ferlinghetti</cite>
+            </div>
+            <div class="testi-card animate-on-scroll">
+                <div class="video-wrap"><iframe src="https://www.youtube.com/embed/j3_yDqpSQEI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <cite>Marco D'Andrea</cite>
+            </div>
+            <div class="testi-card animate-on-scroll delay-1">
+                <div class="video-wrap"><iframe src="https://www.youtube.com/embed/KmZNn7I6bmU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <cite>Salvatore Genovese</cite>
             </div>
         </div>
     </div>
