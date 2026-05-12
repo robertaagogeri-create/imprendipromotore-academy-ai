@@ -756,7 +756,7 @@
         .enrico-photo {
             background: transparent;
             border: none;
-            border-radius: 12px;
+            border-radius: 2px;
             aspect-ratio: 3 / 4;
             display: flex;
             align-items: center;
@@ -764,18 +764,25 @@
             position: relative;
             overflow: hidden;
             box-shadow:
-                12px 12px 30px rgba(0,0,0,0.5),
-                -4px -4px 15px rgba(255,255,255,0.03),
-                0 0 0 1px rgba(255,255,255,0.05);
-            transform: perspective(800px) rotateY(-2deg) rotateX(1deg);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
+                0 30px 70px rgba(0,0,0,0.7),
+                0 10px 25px rgba(0,0,0,0.4),
+                -15px 15px 40px rgba(0,0,0,0.3);
+            outline: 1px solid rgba(255,255,255,0.15);
+            outline-offset: -1px;
         }
-        .enrico-photo:hover {
-            transform: perspective(800px) rotateY(0deg) rotateX(0deg);
-            box-shadow:
-                16px 16px 40px rgba(0,0,0,0.6),
-                -6px -6px 20px rgba(255,255,255,0.04),
-                0 0 0 1px rgba(255,255,255,0.08);
+        .enrico-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.15) 0%,
+                rgba(255,255,255,0.05) 20%,
+                transparent 45%,
+                transparent 70%,
+                rgba(0,0,0,0.25) 100%
+            );
         }
         .enrico-photo strong {
             display: block;
@@ -872,16 +879,16 @@
             gap: 24px;
         }
         .testi-card {
-            background: var(--white);
+            background: var(--dark);
             border-radius: 12px;
             padding: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             transition: all 0.4s;
             position: relative;
         }
         .testi-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
         }
         .testi-card.vertical .video-wrap {
             width: 100%;
@@ -914,11 +921,11 @@
         .testi-card cite {
             font-style: normal;
             font-size: 0.82rem;
-            color: var(--gray);
+            color: var(--white);
             font-weight: 500;
             display: block;
-            padding-top: 16px;
-            border-top: 1px solid #eee;
+            padding-top: 12px;
+            border-top: 1px solid #cccc00;
         }
 
         /* ===================== DIFFERENZE ===================== */
@@ -1357,7 +1364,7 @@
                 <li><a href="#anatomia">Come Funziona</a></li>
                 <li><a href="#chi-insegna">Chi Insegna</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="#iscriviti" class="nav-cta">Iscriviti</a></li>
+                <li><a href="https://imprendipromotore.thrivecart.com/imprendipromotore-academy-ai/" target="_blank" rel="noopener" class="nav-cta">Iscriviti</a></li>
             </ul>
         </nav>
     </div>
@@ -1419,7 +1426,7 @@
                     </video>
                 </div>
                 <div class="hero-cta" style="margin-top:14px;">
-                    <a href="#iscriviti" class="btn-primary" style="width:100%;">Voglio entrare nel Club dei Fondatori</a>
+                    <a href="https://imprendipromotore.thrivecart.com/imprendipromotore-academy-ai/" target="_blank" rel="noopener" class="btn-primary" style="width:100%;">Voglio entrare nel Club dei Fondatori</a>
                 </div>
             </div>
         </div>
@@ -1480,7 +1487,7 @@
             </div>
         </div>
         <div class="cta-row animate-on-scroll">
-            <a href="#iscriviti" class="btn-primary">Voglio entrare nel Club dei Fondatori</a>
+            <a href="https://imprendipromotore.thrivecart.com/imprendipromotore-academy-ai/" target="_blank" rel="noopener" class="btn-primary">Voglio entrare nel Club dei Fondatori</a>
         </div>
     </div>
 </section>
@@ -1549,7 +1556,7 @@
             </div>
         </div>
         <div class="cta-row animate-on-scroll" style="margin-top:36px;">
-            <a href="#iscriviti" class="btn-primary">Voglio entrare nel Club dei Fondatori</a>
+            <a href="https://imprendipromotore.thrivecart.com/imprendipromotore-academy-ai/" target="_blank" rel="noopener" class="btn-primary">Voglio entrare nel Club dei Fondatori</a>
         </div>
     </div>
 </section>
@@ -1710,7 +1717,7 @@
         <p class="amaranto">Cinquanta posti, non uno di più. Lunedì 8 giugno alle 14:30 si apre il cantiere.</p>
 
         <div class="cta-final">
-            <a href="#" class="btn-primary"><span class="placeholder">[Link checkout]</span></a>
+            <a href="https://imprendipromotore.thrivecart.com/imprendipromotore-academy-ai/" target="_blank" rel="noopener" class="btn-primary">Voglio entrare nel Club dei Fondatori</a>
         </div>
 
         <div class="firma">
